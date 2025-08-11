@@ -1,0 +1,119 @@
+(lang dune 3.17)
+(name ToyCtest)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/ToyCtest))
+(files
+ (lib
+  (META
+   ToyCtest.a
+   ToyCtest.cma
+   ToyCtest.cmxa
+   ast.ml
+   ast_printer.ml
+   ast_to_ir.ml
+   dune-package
+   ir.ml
+   ir_printer.ml
+   ir_to_asm.ml
+   lexer.ml
+   opam
+   parser.ml
+   parser.mli
+   regalloction.ml
+   semantic.ml
+   toyCtest.cmi
+   toyCtest.cmt
+   toyCtest.cmx
+   toyCtest.ml
+   toyCtest__Ast.cmi
+   toyCtest__Ast.cmt
+   toyCtest__Ast.cmx
+   toyCtest__Ast_printer.cmi
+   toyCtest__Ast_printer.cmt
+   toyCtest__Ast_printer.cmx
+   toyCtest__Ast_to_ir.cmi
+   toyCtest__Ast_to_ir.cmt
+   toyCtest__Ast_to_ir.cmx
+   toyCtest__Ir.cmi
+   toyCtest__Ir.cmt
+   toyCtest__Ir.cmx
+   toyCtest__Ir_printer.cmi
+   toyCtest__Ir_printer.cmt
+   toyCtest__Ir_printer.cmx
+   toyCtest__Ir_to_asm.cmi
+   toyCtest__Ir_to_asm.cmt
+   toyCtest__Ir_to_asm.cmx
+   toyCtest__Lexer.cmi
+   toyCtest__Lexer.cmt
+   toyCtest__Lexer.cmx
+   toyCtest__Parser.cmi
+   toyCtest__Parser.cmt
+   toyCtest__Parser.cmti
+   toyCtest__Parser.cmx
+   toyCtest__Regalloction.cmi
+   toyCtest__Regalloction.cmt
+   toyCtest__Regalloction.cmx
+   toyCtest__Semantic.cmi
+   toyCtest__Semantic.cmt
+   toyCtest__Semantic.cmx))
+ (libexec (ToyCtest.cmxs))
+ (bin (ToyCtest))
+ (doc (README.md)))
+(library
+ (name ToyCtest)
+ (kind normal)
+ (archives (byte ToyCtest.cma) (native ToyCtest.cmxa))
+ (plugins (byte ToyCtest.cma) (native ToyCtest.cmxs))
+ (native_archives ToyCtest.a)
+ (main_module_name ToyCtest)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name toyCtest)
+     (visibility public)
+     (kind alias)
+     (source (path ToyCtest) (impl (path toyCtest.ml-gen))))
+    (name ToyCtest)
+    (modules
+     (module
+      (obj_name toyCtest__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path ast.ml))))
+     (module
+      (obj_name toyCtest__Ast_printer)
+      (visibility public)
+      (source (path Ast_printer) (impl (path ast_printer.ml))))
+     (module
+      (obj_name toyCtest__Ast_to_ir)
+      (visibility public)
+      (source (path Ast_to_ir) (impl (path ast_to_ir.ml))))
+     (module
+      (obj_name toyCtest__Ir)
+      (visibility public)
+      (source (path Ir) (impl (path ir.ml))))
+     (module
+      (obj_name toyCtest__Ir_printer)
+      (visibility public)
+      (source (path Ir_printer) (impl (path ir_printer.ml))))
+     (module
+      (obj_name toyCtest__Ir_to_asm)
+      (visibility public)
+      (source (path Ir_to_asm) (impl (path ir_to_asm.ml))))
+     (module
+      (obj_name toyCtest__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path lexer.ml))))
+     (module
+      (obj_name toyCtest__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))
+     (module
+      (obj_name toyCtest__Regalloction)
+      (visibility public)
+      (source (path Regalloction) (impl (path regalloction.ml))))
+     (module
+      (obj_name toyCtest__Semantic)
+      (visibility public)
+      (source (path Semantic) (impl (path semantic.ml))))))
+   (wrapped true))))

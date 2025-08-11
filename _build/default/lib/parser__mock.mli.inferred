@@ -1,0 +1,51 @@
+type token =
+    WHILE
+  | VOID
+  | TIMES
+  | SEMI
+  | RPAREN
+  | RETURN
+  | RBRACE
+  | PLUS
+  | OR
+  | NOT
+  | NEQ
+  | MOD
+  | MINUS
+  | LT
+  | LPAREN
+  | LE
+  | LBRACE
+  | INT_LITERAL of int
+  | INT
+  | IF
+  | ID of string
+  | GT
+  | GE
+  | EQ
+  | EOF
+  | ELSE
+  | DIVIDE
+  | CONTINUE
+  | COMMA
+  | BREAK
+  | ASSIGN
+  | AND
+val menhir_begin_marker : int
+val xv_var_decl : Ast.stmt
+val xv_typ : Ast.typ
+val xv_stmt : Ast.stmt
+val xv_separated_nonempty_list_COMMA_param_ : Ast.param list
+val xv_separated_nonempty_list_COMMA_expr_ : Ast.expr list
+val xv_separated_list_COMMA_expr_ : Ast.expr list
+val xv_program : Ast.comp_unit
+val xv_primary : Ast.expr
+val xv_param_list : Ast.param list
+val xv_param : Ast.param
+val xv_loption_separated_nonempty_list_COMMA_expr__ : Ast.expr list
+val xv_list_stmt_ : Ast.stmt list
+val xv_list_func_ : Ast.comp_unit
+val xv_func : Ast.func_def
+val xv_expr : Ast.expr
+val xv_block : Ast.stmt
+val menhir_end_marker : int

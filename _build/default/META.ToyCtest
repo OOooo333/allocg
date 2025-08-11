@@ -1,0 +1,6 @@
+description = ""
+requires = ""
+archive(byte) = "ToyCtest.cma"
+archive(native) = "ToyCtest.cmxa"
+plugin(byte) = "ToyCtest.cma"
+plugin(native) = "ToyCtest.cmxs"
