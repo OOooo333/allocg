@@ -1,0 +1,7 @@
+(executable
+ (public_name ToyCtest)
+ (name main)
+ (modules main)
+ (libraries ToyCtest)
+ (flags
+  (:standard -w -32-27-26-39-8-37)))
