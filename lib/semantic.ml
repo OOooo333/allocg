@@ -159,10 +159,14 @@ let rec check_expr env expr : typ =
 let rec check_stmt env stmt : env =
   match stmt with
   | Block stmts ->
-      let new_env = enter_scope env in
-      (* 依次检查块内的所有语句, fold_left 会将更新后的 env 传递给下一个语句 *)
-      let _ = List.fold_left check_stmt new_env stmts in
-      leave_scope env (* 离开作用域，丢弃块内声明，返回原始 env *)
+    (* 进入一个新的作用域，为这个块创建一个新的环境 *)
+    let new_env = enter_scope env in
+    (* 在新环境中检查所有语句。fold_left 会正确地在块内传递环境，
+       但我们忽略它最终的结果，因为它只在块内有效。*)
+    let _ = List.fold_left check_stmt new_env stmts in
+    (* 直接返回处理该 block 之前的原始环境 `env`。
+       这就优雅地实现了“离开作用域”的效果，因为 new_env 和它的所有修改都被丢弃了。*)
+    env
 
   | Expr e ->
       let _ = check_expr env e in (* 对表达式进行类型检查，但忽略其类型结果 *)
@@ -270,7 +274,6 @@ let check_program (prog: Ast.comp_unit) =
     (* 第二遍：逐个检查每个函数体内部的逻辑 *)
     List.iter (check_func_def env_with_funcs) prog;
     
-    print_endline "语义分析通过！"
   with
   | SemanticError msg ->
     Printf.eprintf "语义错误: %s\n" msg;
